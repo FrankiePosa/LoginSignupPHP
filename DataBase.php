@@ -66,6 +66,17 @@ class DataBase
         } else return false;
     }
 
+    function getFirstName($table, $email) 
+    {
+        $email = $this->prepareData($email);
+        $this->sql = "SELECT first_name FROM " . $table . " WHERE email = '" . $email . "'";
+        $result = mysqli_query($this->connect, $this->sql);
+        if ($row = mysqli_fetch_assoc($result)) {
+            return $row['first_name'];
+        }
+        return null;
+    }
+
 }
 
 ?>
